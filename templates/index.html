@@ -12,6 +12,7 @@
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" integrity="sha512-Velp0ebMKjcd9RiCoaHhLXkR1sFoCCWXNp6w4zj1hfMifYB5441C+sKeBl/T/Ka6NjBiRfBBQRaQq65ekYz3UQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+  <script src="https://www.google.com/recaptcha/api.js?render=6LeJ0BAbAAAAAOW7T4kwpxNCKmwXtnUua1eior5-"></script>
   <title>Jon Covington - Developer</title>
 </head>
 
@@ -382,6 +383,7 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js" integrity="sha512-Y2IiVZeaBwXG1wSV7f13plqlmFOx8MdjuHyYFVoYzhyRr3nH/NMDjTBSswijzADdNzMyWNetbLMfOpIPl6Cv9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
   <script>
     $('.port-item').click(function (){
       $('.collapse').collapse('hide');
@@ -453,29 +455,45 @@
       
       $("#submit").on('click', function (e) {
         e.preventDefault();
+        var csrf_token = "{{ csrf_token() }}";
         $(this).prop('disabled', true)
-          $.ajax({
-            type: "POST",
-            url: "/_send_mail",
-            data: JSON.stringify(
-              {
-                'name': $('#Name').val(),
-                'email': $('#Email').val(),
-                'message': $('#Message').val(),
+        $.ajaxSetup({
+          beforeSend: function(xhr, settings) {
+              if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                  xhr.setRequestHeader("X-CSRFToken", csrf_token);
               }
-
-            ),
-            contentType: "application/json",
-            success: function(response) {
-                  $("#message").text(response['message'])
-                  $('#thankyou').modal('show');
-                  $('#form-card').hide()
-                },
-                error: function(error) {
-                  $("#message").text('So sorry, there seems to have been an error')
-                  console.log(error);
+          }
+        });
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6LeJ0BAbAAAAAOW7T4kwpxNCKmwXtnUua1eior5-', {action: 'submit'}).then(function(token) {
+            console.log(token)
+            $.ajax({
+              type: "POST",
+              url: "/_send_mail",
+              data: JSON.stringify(
+                {
+                  'name': $('#Name').val(),
+                  'email': $('#Email').val(),
+                  'message': $('#Message').val(),
+                  'token': token
                 }
-          });
+
+              ),
+              contentType: "application/json",
+              success: function(response) {
+                    $("#message").text(response['message'])
+                    $('#thankyou').modal('show');
+                    $('#form-card').hide()
+                  },
+                  error: function(error) {
+                    $("#message").text('So sorry, there seems to have been an error')
+                    console.log(error);
+                  }
+              });
+            });
+        });
+        
+        
         });
     });
   </script>
