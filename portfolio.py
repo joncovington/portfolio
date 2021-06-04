@@ -21,8 +21,8 @@ app.config['MAIL_SERVER'] = os.getenv('SMTP_SERVER')
 app.config['MAIL_PORT'] = os.getenv('SMTP_PORT')
 app.config['MAIL_USERNAME'] = os.getenv('SMTP_USERNAME')
 app.config['MAIL_PASSWORD'] = os.getenv('SMTP_PASSWORD')
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
 mail = Mail(app)
 csrf.init_app(app)
 recaptcha.init_app(app)
