@@ -11,16 +11,17 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" integrity="sha512-Velp0ebMKjcd9RiCoaHhLXkR1sFoCCWXNp6w4zj1hfMifYB5441C+sKeBl/T/Ka6NjBiRfBBQRaQq65ekYz3UQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
   <title>Jon Covington - Developer</title>
 </head>
 
 <body class="bg-primary">
+  <p>{{ load_modal }}</p>
  <div class="container">
    <header id="main-header">
      <div class="row no-gutters">
        <div class="col-lg-4 col-md-5">
-          <img src="img/profile.jpg" alt="">
+          <img src="{{url_for('static', filename='img/profile.jpg')}}" alt="">
        </div>
        <div class="col-lg-8 col-md-7">
         <div class="d-flex flex-column">
@@ -77,7 +78,7 @@
    <div id="home" class="collapse show">
      <div class="card card-body bg-primary text-white py-5 border-0">
        <h2>Welcome To My Profile</h2>
-       <p class="lead">Hi I'm Jonathan, and I have a deep love of designing and implementing solutions for business workflow by integrating new and popular technologies.</p>
+       <p class="lead">Hi! I'm Jonathan, and I have a deep love of designing and implementing solutions for business workflow by integrating new and popular technologies.</p>
        <p>I love the efficiency of a great company with excellent strategies. I tend to gravitate towards opportunities that reward hard work and acknowledge my desire to optimize my earnings, and expand my experience and knowledge.</p>
        <p>Outside of work, you can always find me trying new restaurants, enjoying a long audio book, digging into new subjects in online training courses, or researching for my investments.</p>
         
@@ -270,8 +271,8 @@
         <div class="col-md-6">
           <div class="row no-gutters">
             <div class="col">'
-              <a href="img/workbound.jpg" data-toggle="lightbox">
-              <img class="img-fluid" src="img/workbound-sm.jpg" alt=""></div>
+              <a href="{{url_for('static', filename='img/workbound.jpg')}}" data-toggle="lightbox">
+              <img class="img-fluid" src="{{url_for('static', filename='img/workbound-sm.jpg')}}" alt=""></div>
             </a>
           </div>
           <div class="row m-3">
@@ -283,8 +284,8 @@
         <div class="col-md-6">
           <div class="row no-gutters">
             <div class="col">'
-              <a href="img/leaguebox.jpg" data-toggle="lightbox">
-              <img class="img-fluid" src="img/leaguebox-sm.jpg" alt=""></div>
+              <a href="{{url_for('static', filename='img/leaguebox.jpg')}}" data-toggle="lightbox">
+              <img class="img-fluid" src="{{url_for('static', filename='img/leaguebox-sm.jpg')}}" alt=""></div>
             </a>
           </div>
           <div class="row m-3">
@@ -296,44 +297,46 @@
       </div>
     </div>
    </div>
+
+
    <div id="contact" class="collapse">
     <div class="card card-body bg-danger text-white py-5 border-0">
       <h2>Contact Me</h2>
     </div>
-    <div class="card card-body py-5">
+    <div id="form-card" class="card card-body py-5">
       <h3>Get In Touch</h3>
-      <form action="contact.php" method="POST">
+      <form method="POST">
         <div class="form-group">
           <div class="input-group input-group-lg">
             <div class="input-group-prepend">
-              <span class="input-group-text bg-danger text-white">
+              <span id="name-prepend" class="input-group-text bg-danger text-white">
                 <i class="fas fa-user"></i>
               </span>
             </div>
-            <input name="Name" type="text" class="form-control bg-dark text-white" placeholder="Name">
+            <input id="Name" name="Name" type="text" class="form-control bg-dark text-white" placeholder="Name">
           </div>
         </div>
         <div class="form-group">
           <div class="input-group input-group-lg">
             <div class="input-group-prepend">
-              <span class="input-group-text bg-danger text-white">
+              <span id="email-prepend" class="input-group-text bg-danger text-white">
                 <i class="fas fa-envelope"></i>
               </span>
             </div>
-            <input name="Email" type="text" class="form-control bg-dark text-white" placeholder="Email">
+            <input id="Email" name="Email" type="text" class="form-control bg-dark text-white" placeholder="Email">
           </div>
         </div>
         <div class="form-group">
           <div class="input-group input-group-lg">
             <div class="input-group-prepend">
-              <span class="input-group-text bg-danger text-white">
+              <span id="message-prepend" class="input-group-text bg-danger text-white">
                 <i class="fas fa-pencil-alt"></i>
               </span>
             </div>
-            <textarea name="Message" class="form-control bg-dark text-white" placeholder="Message"></textarea>
+            <textarea id="Message" name="Message" class="form-control bg-dark text-white" placeholder="Message"></textarea>
           </div>
         </div>
-        <input type="submit" value="Submit" class="btn btn-danger btn-block btn-lg">
+        <button id="submit" class="btn btn-danger btn-block btn-lg">Submit</button>
       </form>
     </div>
    </div>
@@ -343,13 +346,32 @@
    <footer id="main-footer" class="p-5 bg-dark text-white">
      <div class="row">
        <div class="col-md-6">
-         <a href="docs/Jonathan-Covington-Resume-2021.pdf" class="btn btn-outline-light">
+         <a href="{{url_for('static', filename='docs/Jonathan-Covington-Resume-2021.pdf')}}" class="btn btn-outline-light">
           <i class="fas fa-fil-invoice"></i> Download Resume
         </a>
        </div>
      </div>
    </footer>
  </div>
+  <!--MESSAGE MODAL-->
+  <div id="thankyou" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">A Message From Jon:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="message"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -368,6 +390,93 @@
     $(document).on('click', '[data-toggle="lightbox"]', function(e) {
       e.preventDefault();
       $(this).ekkoLightbox();
+    });
+    $(document).ready(function() {
+      
+      $('#submit').prop('disabled', true)
+      
+      var nameValid = false
+      $('#Name').on('input', function() {
+        if ($(this).val()) {
+          $('#name-prepend').removeClass('bg-danger')
+          $('#name-prepend').addClass('bg-success')
+          nameValid = true
+        } else {
+          $('#name-prepend').removeClass('bg-success')
+          $('#name-prepend').addClass('bg-danger')
+          nameValid = false
+        }
+      });
+      
+      var emailValid = false
+      $('#Email').on('input', function() {
+        if ($(this).val()) {
+          var mailformat = /^\w+([\.-]?\w+)+@\w+([\.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/;
+          if($(this).val().match(mailformat)){
+            $('#email-prepend').removeClass('bg-danger')
+            $('#email-prepend').addClass('bg-success')
+            emailValid = true
+          } else {
+            $('#email-prepend').removeClass('bg-success')
+            $('#email-prepend').addClass('bg-danger')
+            emailValid = false
+          }
+        } else {
+          $('#email-prepend').removeClass('bg-success')
+          $('#email-prepend').addClass('bg-danger')
+          emailValid = false
+        }
+      });
+
+      var messageValid = false
+      $('#Message').on('input', function() {
+        if ($(this).val()) {
+          $('#message-prepend').removeClass('bg-danger')
+          $('#message-prepend').addClass('bg-success')
+          messageValid = true
+        } else {
+          $('#message-prepend').removeClass('bg-success')
+          $('#message-prepend').addClass('bg-danger')
+          messageValid = false
+        }
+      });
+
+      $('.form-control').on('input', function() {
+        if(emailValid && nameValid && messageValid) {
+          $('#submit').prop('disabled', false)
+        } else {
+          $('#submit').prop('disabled', true)
+        }
+      })
+      
+      
+      
+      $("#submit").on('click', function (e) {
+        e.preventDefault();
+        $(this).prop('disabled', true)
+          $.ajax({
+            type: "POST",
+            url: "/_send_mail",
+            data: JSON.stringify(
+              {
+                'name': $('#Name').val(),
+                'email': $('#Email').val(),
+                'message': $('#Message').val(),
+              }
+
+            ),
+            contentType: "application/json",
+            success: function(response) {
+                  $("#message").text(response['message'])
+                  $('#thankyou').modal('show');
+                  $('#form-card').hide()
+                },
+                error: function(error) {
+                  $("#message").text('So sorry, there seems to have been an error')
+                  console.log(error);
+                }
+          });
+        });
     });
   </script>
 </body>
