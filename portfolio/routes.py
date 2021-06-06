@@ -42,7 +42,7 @@ def send_mail():
         'https://www.google.com/recaptcha/api/siteverify',
         data=google_data
     )
-    print(resp.json())
+    print("reCaptcha resp: ", resp.json())
     if resp.json()['success']:
         if form_data:
             data = {
@@ -65,7 +65,7 @@ def send_mail():
                 ]
             }
             result = mailjet.send.create(data=data)
-            
+            print("Mailjet resp: ", result)
             new_user = Contact(name=form_data["name"],
                 email=form_data["email"],
                 comment=form_data["message"],
