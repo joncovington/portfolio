@@ -1,5 +1,9 @@
 This is the source code to my personal portfolio website.  
 
+### Check Out My Portfolio
+
+Please check out my portfolio at: [https://joncovington.dev](https://joncovington.dev)
+
 ## How it's built
 
 ### Server
