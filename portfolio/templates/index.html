@@ -405,6 +405,10 @@
   <script>
     $('.port-item').click(function (){
       $('.collapse').collapse('hide');
+      console.log($(this).css('background-color'))
+      var color = $(this).css('background-color')
+      $('body').removeClass('bg-primary')
+      $('body').css('background-color', color)
     });
 
     $(document).on('click', '[data-toggle="lightbox"]', function(e) {
