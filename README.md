@@ -23,7 +23,7 @@ I wanted to make sure my forms are protected from bots and abuse.
 
 ### Form processing
 
-My contact form is processed via Mailjet api, and recorded using Flask-SQLAlchemy
+My contact form is processed via [Mailjet](https://www.mailjet.com/) api, and recorded using [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/).
 
 ## My Other Projects
 
