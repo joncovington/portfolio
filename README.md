@@ -32,7 +32,7 @@ My contact form is processed by sending email via [Mailjet](https://www.mailjet.
 ## My Other Projects
 
 Check out my other projects at:  
-[LeagueBox](https://bitbucket.org/joncovington/leaguebox/): A poker league management marketplace application.  
-[Workbound API](https://github.com/joncovington/workbound-api): A workflow management API.  
+[LeagueBox](https://bitbucket.org/joncovington/leaguebox/): A poker league management and marketplace application build with Django.  
+[Workbound API](https://github.com/joncovington/workbound-api): A workflow management API build using Django and Django REST Framework.  
 
 Demo sites coming soon!
