@@ -13,17 +13,17 @@ Nothing too fancy. Manipulating a few elements using JQuery.
 
 ### CSS Framework
 
-I'm a fan of using CSS frameworks such as Bootstrap and Materialize CSS for rapid development.  
+I'm a big fan of using CSS frameworks such as Bootstrap and Materialize CSS for rapid development.  
 This portfolio was built using [Bootstrap 4](https://getbootstrap.com/) with some additional custom CSS.
 
 ### reCaptcha
 
-reCAPTCHA is a free service from Google that helps protect websites from spam and abuse.  
+[reCAPTCHA](https://www.google.com/recaptcha/about/) is a free service from Google that helps protect websites from spam and abuse.  
 I wanted to make sure my forms are protected from bots and abuse.
 
 ### Form processing
 
-My contact form is processed via [Mailjet](https://www.mailjet.com/) api, and recorded using [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/).
+My contact form is processed by sending email via [Mailjet](https://www.mailjet.com/) api, and recorded using [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/).
 
 ## My Other Projects
 
